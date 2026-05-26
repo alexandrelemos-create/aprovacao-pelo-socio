@@ -475,7 +475,9 @@
   }
   .appbar-icon { font-size: 24px; color: #374151; cursor: pointer; }
   .page-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; padding: 0 20px; margin-top: 8px; }
-  .filter-row { display: flex; gap: 8px; padding: 0 20px; margin-bottom: 20px; flex-wrap: wrap; }
+  .filter-row { display: flex; gap: 8px; padding: 0 20px; margin-bottom: 20px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-chip { flex-shrink: 0; }
   .filter-chip {
     padding: 8px 16px;
     border-radius: 50px;
@@ -822,9 +824,6 @@
 
 <div class="phone-screen" id="phoneScreen">
 
-    <!-- ══════════════════════════════════════════
-         S1: Login CPF
-    ══════════════════════════════════════════ -->
     <div class="screen active" id="s-login" data-screen="#login-cpf">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -839,9 +838,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S1b: CPF Já cadastrado
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-cpf-cadastrado" data-screen="#cpf-ja-cadastrado">
       <div class="screen-inner">
         <div class="already-icon">🧍</div>
@@ -854,9 +850,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S2: Login Senha
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-login-senha" data-screen="#login-senha">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -878,9 +871,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S3: Dados PF
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-dados" data-screen="#cadastro-dados-pessoais">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;margin-bottom:16px;">
@@ -906,9 +896,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S4: OTP Email (vazio)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-otp-email" data-screen="#validacao-email">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;margin-bottom:16px;">
@@ -917,6 +904,7 @@
         <div class="otp-title">Confirme seu e-mail</div>
         <div class="otp-sub">enviado para jose@email.com</div>
         <div class="otp-boxes" id="otp-email-boxes"></div>
+        <div style="font-size:12px;color:#9ca3af;text-align:center;margin-top:-16px;margin-bottom:8px;">Você está navegando em uma simulação, digite qualquer número (ex.: 111111)</div>
         <div style="flex:1;"></div>
         <div class="resend-row" style="margin-bottom:8px;">Reenviar em <span class="timer" id="timer-email">03:00</span></div>
       </div>
@@ -924,8 +912,6 @@
         <button class="btn-primary" id="btn-confirm-email" disabled onclick="goTo('s-otp-sms')">Confirmar código</button>
       </div>
     </div>
-
-    <!-- S4b handled by same screen -->
 
     <div class="screen" id="s-otp-email-erro" data-screen="#validacao-email-erro">
       <div class="screen-inner">
@@ -961,6 +947,7 @@
         <div class="otp-title">Confirme seu celular</div>
         <div class="otp-sub">enviado por SMS para (16) 91711-1234</div>
         <div class="otp-boxes" id="otp-sms-boxes"></div>
+        <div style="font-size:12px;color:#9ca3af;text-align:center;margin-top:-16px;margin-bottom:8px;">Você está navegando em uma simulação, digite qualquer número (ex.: 111111)</div>
         <div style="flex:1;"></div>
         <div class="resend-row" style="margin-bottom:8px;">Reenviar em <span class="timer" id="timer-sms">03:00</span></div>
       </div>
@@ -969,9 +956,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S6: Validação Documento
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-validacao-doc" data-screen="#selecao-documento">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;margin-bottom:16px;">
@@ -1000,9 +984,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S7: Permissão câmera
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-permissao-cam" data-screen="#permissao-camera">
       <div class="perm-overlay">
         <div class="perm-dialog">
@@ -1013,9 +994,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S8: Câmera Frente
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-cam-frente" data-screen="#camera-frente-documento">
       <div class="cam-screen">
         <div class="cam-header">
@@ -1029,9 +1007,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S9: Foto Preview (Frente)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-foto-preview" data-screen="#preview-foto-frente">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;margin-bottom:16px;">
@@ -1100,9 +1075,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S13: Bankly — Verificar Unico
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-verify" data-screen="#unico-verificar-identidade">
       <div class="bankly-screen">
         <div style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #eee;padding-top:52px;">
@@ -1120,9 +1092,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S14: Bankly Loading
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-loading" data-screen="#unico-preparando-selfie">
       <div class="selfie-loading" id="btn-loading-preparando-selfie" style="cursor:pointer;" onclick="goTo('s-bankly-pronto')">
         <div class="sl-icon">📹</div>
@@ -1131,9 +1100,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S15: Bankly — Prepare-se
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-pronto" data-screen="#unico-prepare-se">
       <div style="flex:1;display:flex;flex-direction:column;padding:32px 24px;background:#f9fafb;">
         <button style="background:none;border:none;font-size:18px;cursor:pointer;align-self:flex-start;color:#374151;" onclick="goTo('s-bankly-verify')">✕</button>
@@ -1146,9 +1112,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S16: Bankly Verificando
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-verificando" data-screen="#unico-verificando-selfie">
       <div class="selfie-loading" id="btn-loading-verificando-selfie" style="cursor:pointer;" onclick="goTo('s-bankly-tire-selfie')">
         <div class="sl-icon" style="font-size:40px;border:3px solid #d1d5db;border-radius:50%;padding:12px;">😐</div>
@@ -1157,9 +1120,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S17: Bankly Tire Selfie
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-tire-selfie" data-screen="#unico-tirar-selfie">
       <div class="bankly-screen" style="position:relative;">
         <div style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #eee;padding-top:52px;">
@@ -1184,9 +1144,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S18: Bankly Finalizado
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-finalizado" data-screen="#unico-solicitacao-finalizada">
       <div class="bankly-screen">
         <div style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #eee;padding-top:52px;">
@@ -1202,9 +1159,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S19: Criar Senha (vazio)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-criar-senha" data-screen="#criar-senha">
       <div class="screen-inner">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;margin-bottom:16px;">
@@ -1239,9 +1193,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S20: Solicitações (lista com 2)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-solicitacoes" data-screen="#solicitacoes-pendentes">
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1298,13 +1249,15 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S21: Solicitações (após 1ª aprovação)
-    ══════════════════════════════════════════ -->
-    <div class="screen" id="s-solicitacoes-1" data-screen="#solicitacoes-pendentes-pos-aprovacao">
+
+    <!-- ══ S-MID: 1 solicitação restante ══ -->
+    <div class="screen" id="s-solicitacoes-mid">
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
-        <div class="appbar-icon">👤</div>
+        <div style="display:flex;gap:12px;">
+          <div class="appbar-icon" onclick="goTo('s-sidebar')">☰</div>
+          <div class="appbar-icon">👤</div>
+        </div>
       </div>
       <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;">
         <div class="page-title">Solicitações de acesso pendentes</div>
@@ -1315,10 +1268,10 @@
         </div>
         <div class="sol-empty">
           <div class="e-icon">📬</div>
-          <div style="font-size:14px;color:#6b7280;line-height:1.5;margin-bottom:8px;">Você possui 2 solicitações de acesso em empresas que você é sócio proprietário.</div>
+          <div class="e-sub">Você possui 1 solicitação de acesso em empresas que você é sócio proprietário.</div>
           <div class="e-link">❓ Ver perguntas frequentes</div>
         </div>
-        <div class="sol-card" onclick="goTo('s-bottomsheet')">
+        <div class="sol-card" onclick="goTo('s-bottomsheet-2')">
           <div class="sol-card-top">
             <div>
               <div style="display:flex;align-items:center;gap:6px;">
@@ -1337,10 +1290,8 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S22: Bottomsheet Aprovação
-    ══════════════════════════════════════════ -->
-    <div class="screen" id="s-bottomsheet" data-screen="#bottomsheet-aprovacao-empresa">
+    <!-- ══ S-BOTTOMSHEET-2 ══ -->
+    <div class="screen" id="s-bottomsheet-2">
       <div style="flex:1;background:#f9fafb;">
         <div style="padding:24px 20px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
           <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1348,25 +1299,21 @@
         </div>
         <div style="padding:16px 20px;font-size:22px;font-weight:700;">Solicitações de acesso pendentes</div>
       </div>
-      <div class="bs-overlay" onclick="goTo('s-solicitacoes')">
+      <div class="bs-overlay" onclick="goTo('s-solicitacoes-mid')">
         <div class="bs-sheet" onclick="event.stopPropagation()" style="max-height:90vh;display:flex;flex-direction:column;padding:0;">
-          <!-- Área rolável -->
           <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 20px 8px;flex:1;">
             <div class="bs-handle"></div>
             <div class="bs-company">Aprovação de cadastro</div>
             <div class="bs-name">Tech Solutions Ltda</div>
             <div class="bs-cnpj">12.123.321/0001-12</div>
             <div class="bs-by-row">Cadastrado por <span>José da Silva</span></div>
-
             <div class="bs-section">Contato da empresa</div>
             <div class="bs-field"><div class="bs-field-label">Telefone comercial</div><div class="bs-field-value">(16) 91818-1234</div></div>
             <div class="bs-field"><div class="bs-field-label">E-mail comercial</div><div class="bs-field-value">empresa@empresa.com</div></div>
-
             <div class="bs-section" style="margin-top:16px;">Complemento de dados de sócios</div>
             <div class="bs-field"><div class="bs-field-label">Nome da mãe</div><div class="bs-field-value">Maria Aparecida</div></div>
             <div class="bs-field"><div class="bs-field-label">Telefone</div><div class="bs-field-value">(16) 91818-1234</div></div>
             <div class="bs-field"><div class="bs-field-label">E-mail</div><div class="bs-field-value">socio@socio.com.br</div></div>
-
             <div class="bs-section" style="margin-top:16px;">Documentos da empresa</div>
             <div style="border:1.5px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:8px;">
               <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e5e7eb;">
@@ -1383,18 +1330,105 @@
               </div>
             </div>
           </div>
-          <!-- Botões fixos no rodapé do sheet -->
           <div style="padding:12px 20px 32px;border-top:1px solid #f3f4f6;background:#fff;flex-shrink:0;">
-            <button class="btn-primary" id="btn-aprovar-solicitacao" onclick="goTo('s-val-selfie-intro')">Aprovar</button>
+            <button class="btn-primary" onclick="openSelfieExternalAprovacao2()">Aprovar</button>
+            <button class="btn-reprovar" onclick="goTo('s-solicitacoes-1')">Reprovar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S-VAL-SELFIE-INTRO-2 ══ -->
+    <div class="screen" id="s-val-selfie-intro-2">
+      <div class="screen-inner">
+        <div class="back-btn" onclick="goTo('s-bottomsheet-2')">← Voltar</div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Valide sua aprovação com segurança</div>
+        <div style="font-size:13px;color:#6b7280;margin-bottom:16px;">Isso assegura que só você aprove solicitações relacionadas a sua empresa.</div>
+        <div class="val-selfie-dica" style="border-radius:12px;">🤳<div class="overlay-btn">↺</div></div>
+        <div class="carousel-dots" style="margin-bottom:8px;"><div class="cdot active"></div><div class="cdot"></div><div class="cdot"></div></div>
+        <div class="carousel-badge" style="position:static;display:inline-flex;width:28px;height:28px;border-radius:50%;background:#7c3aed;color:#fff;font-size:13px;font-weight:700;align-items:center;justify-content:center;margin-bottom:8px;">1</div>
+        <div class="carousel-title">Ache um lugar bem claro e com fundo simples.</div>
+        <div class="carousel-desc">Fique de frente para a luz e sem coisas ou pessoas atrás de você. Assim, sua foto fica boa e ajuda a aprovar mais rápido.</div>
+      </div>
+      <div class="screen-footer no-border">
+        <button class="btn-primary" onclick="openSelfieExternalAprovacao2()">
+          <span id="btn-selfie-val-label-2">Continuar</span>
+          <span id="btn-selfie-val-loading-2" style="display:none;align-items:center;justify-content:center;gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="animation:spin .8s linear infinite;flex-shrink:0;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            Aguardando retorno...
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-solicitacoes-1" data-screen="#solicitacoes-pendentes-pos-aprovacao">
+      <div class="appbar" style="flex-shrink:0;">
+        <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
+        <div class="appbar-icon">👤</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+        <div class="page-title">Solicitações de acesso pendentes</div>
+        <div class="filter-row">
+          <div class="filter-chip">🔍 Buscar</div>
+          <div class="filter-chip active">Solicitações</div>
+          <div class="filter-chip" onclick="goTo('s-manage')">Todos os cadastros</div>
+        </div>
+        <div class="sol-empty" style="padding-top:48px;">
+          <div class="e-icon">✅</div>
+          <div class="e-title" style="font-size:18px;">Você já aprovou todas as solicitações</div>
+          <div class="e-sub">Não há novas solicitações pendentes no momento. Quando houver, você será notificado.</div>
+          <div class="e-link">❓ Ver perguntas frequentes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="s-bottomsheet" data-screen="#bottomsheet-aprovacao-empresa">
+      <div style="flex:1;background:#f9fafb;">
+        <div style="padding:24px 20px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
+          <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
+          <div class="appbar-icon">👤</div>
+        </div>
+        <div style="padding:16px 20px;font-size:22px;font-weight:700;">Solicitações de acesso pendentes</div>
+      </div>
+      <div class="bs-overlay" onclick="goTo('s-solicitacoes')">
+        <div class="bs-sheet" onclick="event.stopPropagation()" style="max-height:90vh;display:flex;flex-direction:column;padding:0;">
+          <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 20px 8px;flex:1;">
+            <div class="bs-handle"></div>
+            <div class="bs-company">Aprovação de cadastro</div>
+            <div class="bs-name">Tech Solutions Ltda</div>
+            <div class="bs-cnpj">12.123.321/0001-12</div>
+            <div class="bs-by-row">Cadastrado por <span>José da Silva</span></div>
+            <div class="bs-section">Contato da empresa</div>
+            <div class="bs-field"><div class="bs-field-label">Telefone comercial</div><div class="bs-field-value">(16) 91818-1234</div></div>
+            <div class="bs-field"><div class="bs-field-label">E-mail comercial</div><div class="bs-field-value">empresa@empresa.com</div></div>
+            <div class="bs-section" style="margin-top:16px;">Complemento de dados de sócios</div>
+            <div class="bs-field"><div class="bs-field-label">Nome da mãe</div><div class="bs-field-value">Maria Aparecida</div></div>
+            <div class="bs-field"><div class="bs-field-label">Telefone</div><div class="bs-field-value">(16) 91818-1234</div></div>
+            <div class="bs-field"><div class="bs-field-label">E-mail</div><div class="bs-field-value">socio@socio.com.br</div></div>
+            <div class="bs-section" style="margin-top:16px;">Documentos da empresa</div>
+            <div style="border:1.5px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e5e7eb;">
+                <span style="color:#7c3aed;font-size:14px;font-weight:500;">Comprovante de endereço</span>
+                <span style="color:#7c3aed;font-size:18px;">⬇</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e5e7eb;">
+                <span style="color:#7c3aed;font-size:14px;font-weight:500;">Contrato social</span>
+                <span style="color:#7c3aed;font-size:18px;">⬇</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+                <span style="color:#7c3aed;font-size:14px;font-weight:500;">Última alteração da ata</span>
+                <span style="color:#7c3aed;font-size:18px;">⬇</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding:12px 20px 32px;border-top:1px solid #f3f4f6;background:#fff;flex-shrink:0;">
+            <button class="btn-primary" id="btn-aprovar-solicitacao" onclick="approveAndGoSelfie()">Aprovar</button>
             <button class="btn-reprovar" id="btn-reprovar-solicitacao" onclick="goTo('s-solicitacoes-1')">Reprovar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S23: Validação da Solicitação — Selfie Intro
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-val-selfie-intro" data-screen="#validacao-aprovacao-selfie-dicas">
       <div class="screen-inner">
         <div class="back-btn" onclick="goTo('s-bottomsheet')">← Voltar</div>
@@ -1417,9 +1451,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S24: Bankly Verificar (Validação da solicitação)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-verify-val" data-screen="#unico-verificar-identidade-aprovacao">
       <div class="bankly-screen">
         <div style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #eee;padding-top:52px;">
@@ -1436,9 +1467,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S25: Bankly Loading (Validação)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-loading-val" data-screen="#unico-preparando-selfie-aprovacao">
       <div class="selfie-loading" id="btn-loading-preparando-selfie-aprovacao" style="cursor:pointer;" onclick="goTo('s-bankly-tire-selfie-val')">
         <div class="sl-icon">📹</div>
@@ -1447,9 +1475,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S26: Bankly Tire Selfie (Validação)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-bankly-tire-selfie-val" data-screen="#unico-tirar-selfie-aprovacao">
       <div class="bankly-screen" style="position:relative;">
         <div style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #eee;padding-top:52px;">
@@ -1473,7 +1498,6 @@
       </div>
     </div>
 
-    <!-- S27: Bankly Verificando (Validação) -->
     <div class="screen" id="s-bankly-verificando-val" data-screen="#unico-verificando-selfie-aprovacao">
       <div class="selfie-loading" id="btn-loading-verificando-selfie-aprovacao" style="cursor:pointer;" onclick="goTo('s-solicitacoes-1')">
         <div class="sl-icon" style="font-size:40px;border:3px solid #d1d5db;border-radius:50%;padding:12px;">😐</div>
@@ -1483,9 +1507,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S28: Lista Cadastros (MANAGE)
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-manage" data-screen="#lista-cadastros">
       <div class="appbar">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1528,11 +1549,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S29: Next Steps — Em análise
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-next-steps-analise" data-screen="#proximos-passos-em-analise">
-      <!-- Header fixo -->
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
         <div style="display:flex;gap:16px;align-items:center;">
@@ -1543,7 +1560,6 @@
           <div class="appbar-icon">👤</div>
         </div>
       </div>
-      <!-- Sub-header com back -->
       <div style="display:flex;align-items:center;gap:10px;padding:12px 20px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
         <button style="background:none;border:none;font-size:20px;color:#7c3aed;cursor:pointer;line-height:1;" onclick="goTo('s-manage')">←</button>
         <div>
@@ -1551,7 +1567,6 @@
           <div style="font-size:16px;font-weight:700;">Tech Solutions Ltda</div>
         </div>
       </div>
-      <!-- Conteúdo rolável -->
       <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 20px;">
         <div class="ns-card">
           <div class="ns-badge orange">🟠 Em análise</div>
@@ -1571,9 +1586,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S30: Next Steps — Aguardando conta
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-next-steps-conta" data-screen="#proximos-passos-aguardando-conta">
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1604,9 +1616,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S31: Next Steps — Conta em análise
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-next-steps-conta-analise" data-screen="#proximos-passos-conta-em-analise">
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1637,9 +1646,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S32: Next Steps — Bloqueio Temporário
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-next-steps-bloqueio" data-screen="#proximos-passos-bloqueio-temporario">
       <div class="appbar" style="flex-shrink:0;">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1670,9 +1676,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S33: Conta Temporariamente Bloqueada
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-conta-bloqueada" data-screen="#conta-temporariamente-bloqueada">
       <div class="appbar">
         <img src="https://i.imgur.com/K726fWY.png" alt="MaisTodos" style="height:32px;object-fit:contain;">
@@ -1686,9 +1689,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S34: Conta Bancária
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-conta-bancaria" data-screen="#cadastro-conta-bancaria">
       <div class="screen-inner">
         <div class="progress-company">Tech Solutions Ltda</div>
@@ -1735,9 +1735,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         S35: Sidebar
-    ══════════════════════════════════════════ -->
     <div class="screen" id="s-sidebar" data-screen="#menu-lateral">
       <div style="flex:1;background:#f9fafb;">
         <div style="padding:52px 20px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;">
@@ -1769,54 +1766,45 @@
       </div>
     </div>
 
-  </div><!-- end phone-screen -->
-</div><!-- end phone -->
+  </div>
+</div>
 
 <script>
-// ─── KYC Externo — abre nova aba e detecta retorno ────────────────────────
 function openSelfieExternal() {
   const btn    = document.getElementById('btn-continuar-selfie-dicas');
   const label  = document.getElementById('btn-selfie-label');
   const loader = document.getElementById('btn-selfie-loading');
-
-  // Abre URL externa em nova aba
   window.open('https://alexandrelemos-create.github.io/bankly/', '_blank');
-
-  // Entra em estado de loading
   btn.disabled = true;
   btn.style.background = '#6d28d9';
   label.style.display  = 'none';
   loader.style.display = 'flex';
-
-  // Detecta quando o usuário retorna para esta aba
   function onFocus() {
     window.removeEventListener('focus', onFocus);
-    // Pequeno delay para garantir que a aba já está ativa
     setTimeout(function() {
-      // Restaura botão
       btn.disabled = false;
       btn.style.background = '';
       label.style.display  = 'inline';
       loader.style.display = 'none';
-      // Navega para criar senha
       goTo('s-criar-senha');
     }, 400);
   }
   window.addEventListener('focus', onFocus);
 }
 
+function approveAndGoSelfie() {
+  goTo('s-val-selfie-intro');
+}
+
 function openSelfieExternalAprovacao() {
   const btn    = document.getElementById('btn-continuar-validacao-aprovacao');
   const label  = document.getElementById('btn-selfie-val-label');
   const loader = document.getElementById('btn-selfie-val-loading');
-
   window.open('https://alexandrelemos-create.github.io/bankly/', '_blank');
-
   btn.disabled = true;
   btn.style.background = '#6d28d9';
   label.style.display  = 'none';
   loader.style.display = 'flex';
-
   function onFocus() {
     window.removeEventListener('focus', onFocus);
     setTimeout(function() {
@@ -1824,52 +1812,32 @@ function openSelfieExternalAprovacao() {
       btn.style.background = '';
       label.style.display  = 'inline';
       loader.style.display = 'none';
-      goTo('s-solicitacoes-1');
+      goTo('s-solicitacoes-mid');
     }, 400);
   }
   window.addEventListener('focus', onFocus);
 }
 
-// ─── Screen Registry ───────────────────────────────────────────────
-const screenDefs = [
-  { id: 's-login',              label: 'Login CPF' },
-  { id: 's-cpf-cadastrado',     label: 'CPF Cadastrado' },
-  { id: 's-login-senha',        label: 'Login Senha' },
-  { id: 's-dados',              label: 'Dados PF' },
-  { id: 's-otp-email',          label: 'OTP Email' },
-  { id: 's-otp-email-erro',     label: 'OTP Email Erro' },
-  { id: 's-otp-sms',            label: 'OTP SMS' },
-  { id: 's-validacao-doc',      label: 'Val. Documento' },
-  { id: 's-permissao-cam',      label: 'Perm. Câmera' },
-  { id: 's-cam-frente',         label: 'Câm. Frente' },
-  { id: 's-foto-preview',       label: 'Foto Frente' },
-  { id: 's-cam-verso',          label: 'Câm. Verso' },
-  { id: 's-foto-verso-preview', label: 'Foto Verso' },
-  { id: 's-selfie-intro',       label: 'Selfie Dicas' },
-  { id: 's-bankly-verify',      label: 'Unico Verify' },
-  { id: 's-bankly-loading',     label: 'Unico Loading' },
-  { id: 's-bankly-pronto',      label: 'Unico Pronto' },
-  { id: 's-bankly-verificando', label: 'Unico Verif.' },
-  { id: 's-bankly-tire-selfie', label: 'Tire Selfie' },
-  { id: 's-bankly-finalizado',  label: 'Unico OK' },
-  { id: 's-criar-senha',        label: 'Criar Senha' },
-  { id: 's-solicitacoes',       label: 'Solicitações' },
-  { id: 's-solicitacoes-1',     label: 'Solicit. (1)' },
-  { id: 's-bottomsheet',        label: 'Bottomsheet' },
-  { id: 's-val-selfie-intro',   label: 'Val. Selfie' },
-  { id: 's-bankly-verify-val',  label: 'Unico Val.' },
-  { id: 's-bankly-loading-val', label: 'Unico Load. Val.' },
-  { id: 's-bankly-tire-selfie-val', label: 'Selfie Val.' },
-  { id: 's-bankly-verificando-val', label: 'Verif. Val.' },
-  { id: 's-manage',             label: 'Lista Cadastros' },
-  { id: 's-next-steps-analise', label: 'Em Análise' },
-  { id: 's-next-steps-conta',   label: 'Aguard. Conta' },
-  { id: 's-next-steps-conta-analise', label: 'Conta Análise' },
-  { id: 's-next-steps-bloqueio', label: 'Bloqueio' },
-  { id: 's-conta-bloqueada',    label: 'Ct. Bloqueada' },
-  { id: 's-conta-bancaria',     label: 'Conta Bancária' },
-  { id: 's-sidebar',            label: 'Sidebar' },
-];
+function openSelfieExternalAprovacao2() {
+  const btn    = document.getElementById('btn-continuar-validacao-aprovacao') || document.querySelector('#s-val-selfie-intro-2 .btn-primary');
+  const label  = document.getElementById('btn-selfie-val-label-2');
+  const loader = document.getElementById('btn-selfie-val-loading-2');
+
+  window.open('https://alexandrelemos-create.github.io/bankly/', '_blank');
+
+  if (label) { label.style.display = 'none'; }
+  if (loader) { loader.style.display = 'flex'; }
+
+  function onFocus2() {
+    window.removeEventListener('focus', onFocus2);
+    setTimeout(function() {
+      if (label) { label.style.display = 'inline'; }
+      if (loader) { loader.style.display = 'none'; }
+      goTo('s-solicitacoes-1');
+    }, 400);
+  }
+  window.addEventListener('focus', onFocus2);
+}
 
 let currentScreen = 's-login';
 
@@ -1879,13 +1847,11 @@ function goTo(id) {
   if (target) {
     target.classList.add('active');
     currentScreen = id;
-    const screenName = target.getAttribute('data-screen');
-    if (screenName) history.pushState(null, '', screenName);
+
   }
   if (target) target.scrollTop = 0;
 }
 
-// ─── CPF Input ─────────────────────────────────────────────────────
 function fmtCPF(el) {
   let v = el.value.replace(/\D/g, '').slice(0, 11);
   if (v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
@@ -1899,14 +1865,12 @@ document.getElementById('senha-input').addEventListener('input', function() {
   document.getElementById('btn-entrar').disabled = this.value.length < 1;
 });
 
-// ─── Dados PF ──────────────────────────────────────────────────────
 function checkDados() {
   const fields = ['d-nome','d-mae','d-nasc','d-email','d-tel'];
   const ok = fields.every(id => document.getElementById(id).value.trim().length > 0);
   document.getElementById('btn-continuar-dados').disabled = !ok;
 }
 
-// ─── OTP Boxes ─────────────────────────────────────────────────────
 function buildOTP(containerId, btnId, nextScreen) {
   const c = document.getElementById(containerId);
   for (let i = 0; i < 6; i++) {
@@ -1928,7 +1892,6 @@ function buildOTP(containerId, btnId, nextScreen) {
 buildOTP('otp-email-boxes', 'btn-confirm-email', 's-otp-sms');
 buildOTP('otp-sms-boxes', 'btn-confirm-sms', 's-validacao-doc');
 
-// ─── Timers ────────────────────────────────────────────────────────
 function startTimer(id, secs) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -1944,7 +1907,6 @@ function startTimer(id, secs) {
 startTimer('timer-email', 180);
 startTimer('timer-sms', 180);
 
-// ─── Documento select ──────────────────────────────────────────────
 let docSel = null;
 function selectDoc(type) {
   docSel = type;
@@ -1953,19 +1915,41 @@ function selectDoc(type) {
     const rc = document.getElementById('radio-'+t);
     rc.classList.toggle('checked', t === type);
   });
-  document.getElementById('tips-doc').style.display = type === 'cnh' ? 'block' : 'none';
+  document.getElementById('tips-doc').style.display = 'block';
   document.getElementById('btn-ir-validacao').disabled = false;
   document.getElementById('btn-doc-label').textContent = type === 'cnh' ? 'Fotografar documento' : 'Ir para validação';
 }
 
-// ─── Toggle password ───────────────────────────────────────────────
 function togglePw(inputId, btn) {
   const inp = document.getElementById(inputId);
   inp.type = inp.type === 'password' ? 'text' : 'password';
   btn.textContent = inp.type === 'password' ? '👁' : '🙈';
 }
 
-// ─── Senha Requirements ───────────────────────────────────────────
+// ─── Atalhos de teclado = avança / - retrocede ───────────────────
+const screenOrder = [
+  's-login','s-cpf-cadastrado','s-login-senha','s-dados','s-otp-email',
+  's-otp-email-erro','s-otp-sms','s-validacao-doc','s-permissao-cam',
+  's-cam-frente','s-foto-preview','s-cam-verso','s-foto-verso-preview',
+  's-selfie-intro','s-bankly-verify','s-bankly-loading','s-bankly-pronto',
+  's-bankly-verificando','s-bankly-tire-selfie','s-bankly-finalizado',
+  's-criar-senha','s-solicitacoes','s-solicitacoes-1','s-bottomsheet',
+  's-val-selfie-intro','s-bankly-verify-val','s-bankly-loading-val',
+  's-bankly-tire-selfie-val','s-bankly-verificando-val','s-manage',
+  's-next-steps-analise','s-next-steps-conta','s-next-steps-conta-analise',
+  's-next-steps-bloqueio','s-conta-bloqueada','s-conta-bancaria','s-sidebar'
+];
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+  const idx = screenOrder.indexOf(currentScreen);
+  if (e.key === '=' || e.key === '+') {
+    if (idx < screenOrder.length - 1) goTo(screenOrder[idx + 1]);
+  } else if (e.key === '-') {
+    if (idx > 0) goTo(screenOrder[idx - 1]);
+  }
+});
+
 function checkSenha() {
   const v = document.getElementById('nova-senha').value;
   const c = document.getElementById('conf-senha').value;
