@@ -1849,6 +1849,7 @@ function goTo(id) {
     currentScreen = id;
 
   }
+  try { var screenName = target.getAttribute("data-screen"); if (screenName) history.replaceState(null, "", screenName); } catch(e) {}
   if (target) target.scrollTop = 0;
 }
 
